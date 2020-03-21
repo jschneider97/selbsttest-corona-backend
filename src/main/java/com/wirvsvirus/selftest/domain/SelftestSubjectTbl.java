@@ -77,4 +77,12 @@ public class SelftestSubjectTbl extends BaseModel {
     public void setDeviceID(String deviceID) {
         this.deviceID = deviceID;
     }
+
+    public ContactTbl getContact() {
+        return contact;
+    }
+
+    public void setContact(ContactTbl contact) {
+        this.contact = contact;
+    }
 }

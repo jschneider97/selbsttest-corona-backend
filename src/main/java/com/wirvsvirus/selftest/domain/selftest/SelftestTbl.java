@@ -10,6 +10,7 @@ import com.wirvsvirus.selftest.domain.BaseModel;
 import com.wirvsvirus.selftest.domain.SelftestSubjectTbl;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -66,7 +67,7 @@ public class SelftestTbl extends BaseModel {
 
     public void setTravelingCriteria(TravelingCriteria travelingCriteria) {
         this.travelingCriteria = travelingCriteria;
-    }
+    }*/
 
     public SelftestSubjectTbl getSubject() {
         return subject;
@@ -74,7 +75,16 @@ public class SelftestTbl extends BaseModel {
 
     public void setSubject(SelftestSubjectTbl subject) {
         this.subject = subject;
-    } */
+    }
 
+    public List<QuestionAnswerTbl> getQuestionAnswerList() {
+        if(this.questionAnswerList == null) {
+            this.questionAnswerList = new ArrayList<>();
+        }
+        return questionAnswerList;
+    }
 
+    public void setQuestionAnswerList(List<QuestionAnswerTbl> questionAnswerList) {
+        this.questionAnswerList = questionAnswerList;
+    }
 }
