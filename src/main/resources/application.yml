@@ -1,0 +1,31 @@
+server:
+  port: 8989
+
+spring:
+  application:
+    name: selftest-backend
+  profiles: h2-local
+  cloud:
+    config:
+      enabled: false
+  datasource:
+    url: jdbc:h2:mem:claimsdb;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE
+    username: sa
+    password:
+    driverClassName: org.h2.Driver
+    platform: h2
+  jpa:
+    show-sql: false
+    format_sql: true
+    hibernate:
+      ddl-auto: create
+    database: h2
+
+h2:
+  console:
+    web:
+      port: 8182
+    tcp:
+      port: 8283
+
+
