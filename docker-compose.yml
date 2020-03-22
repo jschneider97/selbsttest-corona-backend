@@ -1,0 +1,24 @@
+version: "2"
+services:
+  mysql:
+    image: mariadb:latest
+    restart: always
+    ports:
+      - "3306:3306"
+    environment:
+      MYSQL_ROOT_PASSWORD: "rootPW"
+      MYSQL_DATABASE: "selftest"
+      MYSQL_USER: "selftest"
+      MYSQL_PASSWORD: "passWd!"
+    container_name: mysql
+  selftest-backend:
+    image: jschneider97/corona-selftest
+    ports:
+      - "8088:8088"
+    environment:
+      SPRING_PROFILES_ACTIVE: docker-mysql
+      WAIT_HOSTS: mysql:3306
+      WAIT_HOSTS_TIMEOUT: 300
+      WAIT_SLEEP_INTERVAL: 30
+      WAIT_HOST_CONNECT_TIMEOUT: 30
+    container_name: selftest-backend
