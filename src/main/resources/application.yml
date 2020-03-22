@@ -17,6 +17,28 @@ spring:
     hibernate:
       ddl-auto: create
     database: h2
+    h2:
+      console:
+        enabled: true
+        path: /h2-console
+---
+spring:
+  profiles: local-mysql
+  datasource:
+    url: jdbc:mariadb://localhost:3306/selftest?zeroDateTimeBehavior=CONVERT_TO_NULL&serverTimezone=UTC
+    username: root
+    password: rootPW
+    driver-class-name: org.mariadb.jdbc.Driver
+    initialization-mode: always
+  jpa:
+    show-sql: true
+    hibernate:
+      ddl-auto: create-drop
+    #properties:
+      #hibernate:
+        #dialect: org.hibernate.dialect.MySQLDialect
+
+
 
 h2:
   console:

@@ -6,6 +6,7 @@ import com.wirvsvirus.selftest.domain.BaseModel;
 import com.wirvsvirus.selftest.domain.selftest.condition.QuestionConditionTbl;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
@@ -29,10 +30,10 @@ public class QuestionTbl extends BaseModel {
     private QuestionType questionType;
 
     //ManyToMany?
-    @OneToMany(fetch = FetchType.EAGER, mappedBy = "question", orphanRemoval = true)
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "question", orphanRemoval = true, cascade = CascadeType.PERSIST)
     private List<ChoiceAnswerTbl> answers;
 
-    @ManyToMany(fetch = FetchType.LAZY)
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "question")
     private Set<QuestionConditionTbl> conditions;
 
     public String getQuestionText() {
@@ -60,6 +61,9 @@ public class QuestionTbl extends BaseModel {
     }
 
     public List<ChoiceAnswerTbl> getAnswers() {
+        if(this.answers == null) {
+            this.answers = new ArrayList<>();
+        }
         return answers;
     }
 

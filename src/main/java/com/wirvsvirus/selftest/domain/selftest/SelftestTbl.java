@@ -1,18 +1,13 @@
 package com.wirvsvirus.selftest.domain.selftest;
 
-import com.wirvsvirus.selftest.api.BaseDto;
-import com.wirvsvirus.selftest.api.Criteria.ContactCriteria;
-import com.wirvsvirus.selftest.api.Criteria.SymptomsCriteria;
-import com.wirvsvirus.selftest.api.Criteria.TravelingCriteria;
-import com.wirvsvirus.selftest.api.selftest.Answer;
-import com.wirvsvirus.selftest.api.selftest.Question;
+import com.wirvsvirus.selftest.api.Criteria.*;
 import com.wirvsvirus.selftest.domain.BaseModel;
+import com.wirvsvirus.selftest.domain.criteria.*;
 import com.wirvsvirus.selftest.domain.SelftestSubjectTbl;
 
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
 /**
  * @author Justus Schneider
@@ -25,10 +20,19 @@ public class SelftestTbl extends BaseModel {
     @Column(name = "finished")
     private Boolean finished;
 
-    /*ContactCriteria contactCriteria;
-    SymptomsCriteria symptomsCriteria;
-    TravelingCriteria travelingCriteria;*/
-    //...
+    //TODO: Cascade prüfen
+    @OneToOne(mappedBy = "selftest", cascade = CascadeType.ALL)
+    ContactCriteriaTbl contactCriteria;
+    @OneToOne(mappedBy = "selftest", cascade = CascadeType.ALL)
+    SymptomsCriteriaTbl symptomsCriteria;
+    @OneToOne(mappedBy = "selftest", cascade = CascadeType.ALL)
+    TravelingCriteriaTbl travelingCriteria;
+    @OneToOne(mappedBy = "selftest", cascade = CascadeType.ALL)
+    RiskGroupCriteriaTbl riskGroupCriteria;
+    @OneToOne(mappedBy = "selftest", cascade = CascadeType.ALL)
+    SymptomsHighCriteriaTbl symptomsHighCriteria;
+    @OneToOne(mappedBy = "selftest", cascade = CascadeType.ALL)
+    SymptomsMediumCriteriaTbl symptomsMediumCriteria;
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "subject_id", referencedColumnName = "id")
@@ -45,29 +49,53 @@ public class SelftestTbl extends BaseModel {
         this.finished = finished;
     }
 
-    /*public ContactCriteria getContactCriteria() {
+    public ContactCriteriaTbl getContactCriteria() {
         return contactCriteria;
     }
 
-    public void setContactCriteria(ContactCriteria contactCriteria) {
+    public void setContactCriteria(ContactCriteriaTbl contactCriteria) {
         this.contactCriteria = contactCriteria;
     }
 
-    public SymptomsCriteria getSymptomsCriteria() {
+    public SymptomsCriteriaTbl getSymptomsCriteria() {
         return symptomsCriteria;
     }
 
-    public void setSymptomsCriteria(SymptomsCriteria symptomsCriteria) {
+    public void setSymptomsCriteria(SymptomsCriteriaTbl symptomsCriteria) {
         this.symptomsCriteria = symptomsCriteria;
     }
 
-    public TravelingCriteria getTravelingCriteria() {
+    public TravelingCriteriaTbl getTravelingCriteria() {
         return travelingCriteria;
     }
 
-    public void setTravelingCriteria(TravelingCriteria travelingCriteria) {
+    public void setTravelingCriteria(TravelingCriteriaTbl travelingCriteria) {
         this.travelingCriteria = travelingCriteria;
-    }*/
+    }
+
+    public RiskGroupCriteriaTbl getRiskGroupCriteria() {
+        return riskGroupCriteria;
+    }
+
+    public void setRiskGroupCriteria(RiskGroupCriteriaTbl riskGroupCriteria) {
+        this.riskGroupCriteria = riskGroupCriteria;
+    }
+
+    public SymptomsHighCriteriaTbl getSymptomsHighCriteria() {
+        return symptomsHighCriteria;
+    }
+
+    public void setSymptomsHighCriteria(SymptomsHighCriteriaTbl symptomsHighCriteria) {
+        this.symptomsHighCriteria = symptomsHighCriteria;
+    }
+
+    public SymptomsMediumCriteriaTbl getSymptomsMediumCriteria() {
+        return symptomsMediumCriteria;
+    }
+
+    public void setSymptomsMediumCriteria(SymptomsMediumCriteriaTbl symptomsMediumCriteria) {
+        this.symptomsMediumCriteria = symptomsMediumCriteria;
+    }
 
     public SelftestSubjectTbl getSubject() {
         return subject;

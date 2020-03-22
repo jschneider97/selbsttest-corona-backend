@@ -18,10 +18,6 @@ import org.mapstruct.Mapping;
 @Mapper(componentModel = "spring")
 public interface SelftestMapper {
 
-
-    @Mapping(target = "contactCriteria", ignore = true)
-    @Mapping(target = "symptomsCriteria", ignore = true)
-    @Mapping(target = "travelingCriteria", ignore = true)
     @Mapping(target = "questions", ignore = true)
     Selftest mapFromBean(SelftestTbl entity);
 

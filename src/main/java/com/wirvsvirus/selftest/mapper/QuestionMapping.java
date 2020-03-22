@@ -30,7 +30,7 @@ public class QuestionMapping {
         } else {
             DateAnswer dateAnswer = new DateAnswer();
             dateAnswer.setAnswerDate(entity.getDateAnswer());
-            question.setAnswer(dateAnswer);
+            question.setDateAnswer(dateAnswer);
         }
 
 

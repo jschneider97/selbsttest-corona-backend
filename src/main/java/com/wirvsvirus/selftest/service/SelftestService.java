@@ -2,6 +2,7 @@ package com.wirvsvirus.selftest.service;
 
 import com.wirvsvirus.selftest.api.selftest.Selftest;
 import com.wirvsvirus.selftest.domain.SelftestSubjectTbl;
+import com.wirvsvirus.selftest.domain.criteria.*;
 import com.wirvsvirus.selftest.domain.selftest.SelftestTbl;
 import com.wirvsvirus.selftest.mapper.QuestionMapping;
 import com.wirvsvirus.selftest.mapper.SelftestMapper;
@@ -58,6 +59,12 @@ public class SelftestService {
         SelftestTbl entity = new SelftestTbl();
         entity.setFinished(false);
         entity.setSubject(subject);
+        entity.setContactCriteria(new ContactCriteriaTbl(entity));
+        entity.setRiskGroupCriteria(new RiskGroupCriteriaTbl(entity));
+        entity.setSymptomsCriteria(new SymptomsCriteriaTbl(entity));
+        entity.setSymptomsMediumCriteria(new SymptomsMediumCriteriaTbl(entity));
+        entity.setSymptomsHighCriteria(new SymptomsHighCriteriaTbl(entity));
+        entity.setTravelingCriteria(new TravelingCriteriaTbl(entity));
 
         this.selftestRepository.save(entity);
 

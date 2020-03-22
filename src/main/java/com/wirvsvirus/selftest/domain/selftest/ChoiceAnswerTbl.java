@@ -42,4 +42,12 @@ public class ChoiceAnswerTbl extends BaseModel {
     public void setAnswertText(String answertText) {
         this.answertText = answertText;
     }
+
+    public QuestionTbl getQuestion() {
+        return question;
+    }
+
+    public void setQuestion(QuestionTbl question) {
+        this.question = question;
+    }
 }

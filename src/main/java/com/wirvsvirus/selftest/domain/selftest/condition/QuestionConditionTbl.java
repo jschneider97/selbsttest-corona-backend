@@ -1,11 +1,9 @@
 package com.wirvsvirus.selftest.domain.selftest.condition;
 
 import com.wirvsvirus.selftest.domain.BaseModel;
+import com.wirvsvirus.selftest.domain.selftest.QuestionTbl;
 
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.OneToMany;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.util.Set;
 
 /**
@@ -21,6 +19,10 @@ public class QuestionConditionTbl extends BaseModel {
     @OneToMany(fetch = FetchType.EAGER, orphanRemoval = true, mappedBy = "questionCondition")
     Set<CriteriaScoreCondition> criteriaScoreConditions;
 
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "question_id", referencedColumnName = "id")
+    QuestionTbl question;
+
     public Set<PredecessorConditionTbl> getPredecessorConditions() {
         return predecessorConditions;
     }
@@ -35,5 +37,13 @@ public class QuestionConditionTbl extends BaseModel {
 
     public void setCriteriaScoreConditions(Set<CriteriaScoreCondition> criteriaScoreConditions) {
         this.criteriaScoreConditions = criteriaScoreConditions;
+    }
+
+    public QuestionTbl getQuestion() {
+        return question;
+    }
+
+    public void setQuestion(QuestionTbl question) {
+        this.question = question;
     }
 }
